@@ -1,9 +1,9 @@
-<objdefs appVersion="1.0.12">
+<objdefs appVersion="1.1.0">
    <obj.normal id="N8AnalogIn" uuid="bf2a5033-6759-485a-9122-ee7ac8735301">
       <sDescription>N8 AnalogIn</sDescription>
       <author>AndyCap</author>
       <license>GPL</license>
-      <helpPatch>N8MAX11300.axh</helpPatch>
+      <helpPatch>MAX11300.axh</helpPatch>
       <inlets/>
       <outlets>
          <frac32.positive name="p" description="Unipolar Output"/>

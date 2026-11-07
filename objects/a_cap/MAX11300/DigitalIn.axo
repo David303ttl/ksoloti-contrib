@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.12">
+<objdefs appVersion="1.1.0">
    <obj.normal id="DigitalIn" uuid="fb85e86f-5b99-4812-a13a-fcf6dfa5bf80">
       <sDescription>DigitalIn</sDescription>
       <author>AndyCap</author>
@@ -6,7 +6,7 @@
       <helpPatch>MAX11300.axh</helpPatch>
       <inlets/>
       <outlets>
-         <bool32 name="out1"/>
+         <bool32 name="out1" noLabel="true"/>
       </outlets>
       <displays/>
       <params/>

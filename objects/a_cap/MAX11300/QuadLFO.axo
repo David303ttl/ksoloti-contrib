@@ -1,11 +1,11 @@
-<objdefs appVersion="1.0.12">
+<objdefs appVersion="1.1.0">
    <obj.normal id="QuadLFO" uuid="96037e60-515c-451e-8bfb-f2211e050131">
       <sDescription>Quadrature LFO.</sDescription>
       <author>AndyCap</author>
       <license>GPL</license>
       <helpPatch>N8MAX11300.axh</helpPatch>
       <inlets>
-         <frac32.bipolar name="pitch" description="Left Input"/>
+         <frac32.bipolar name="pitch" description="Left Input" noLabel="true"/>
       </inlets>
       <outlets>
          <frac32.bipolar name="0" description="0 degrees phase"/>

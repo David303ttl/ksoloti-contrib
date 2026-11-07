@@ -1,12 +1,12 @@
-<objdefs appVersion="1.0.12">
+<objdefs appVersion="1.1.0">
    <obj.normal id="N8DigitalIn" uuid="496f72c6-874b-4bfa-ac52-a5757a37933e">
       <sDescription>DigitalIn</sDescription>
       <author>AndyCap</author>
       <license>GPL</license>
-      <helpPatch>N8MAX11300.axh</helpPatch>
+      <helpPatch>MAX11300.axh</helpPatch>
       <inlets/>
       <outlets>
-         <bool32 name="out1"/>
+         <bool32 name="out1" noLabel="true"/>
       </outlets>
       <displays/>
       <params/>

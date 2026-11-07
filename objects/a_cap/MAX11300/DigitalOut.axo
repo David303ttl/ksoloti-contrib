@@ -1,11 +1,11 @@
-<objdefs appVersion="1.0.12">
+<objdefs appVersion="1.1.0">
    <obj.normal id="DigitalOut" uuid="3a761a84-75ca-4b90-9f25-d4128ede02ad">
       <sDescription>DigitalOut</sDescription>
       <author>AndyCap</author>
       <license>GPL</license>
       <helpPatch>MAX11300.axh</helpPatch>
       <inlets>
-         <bool32 name="in1"/>
+         <bool32 name="in1" noLabel="true"/>
       </inlets>
       <outlets/>
       <displays/>

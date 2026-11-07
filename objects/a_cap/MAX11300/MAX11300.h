@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../chibios/os/various/chprintf.c"
+#include "../chibios/os/hal/lib/streams/chprintf.h"
 
 // syncronization
 //
@@ -271,8 +271,8 @@ ChannelInfo channels[CHANNEL_COUNT];
 uint8_t txbuf[32] SPILINK_DMA_SECTION;
 uint8_t rxbuf[32] SPILINK_DMA_SECTION;
 #else
-#define SSPORT	GPIOD
-#define SSPAD 	5
+#define SSPORT	GPIOA
+#define SSPAD 	15
 uint8_t txbuf[32] __attribute__ ((section (".sram2")));
 uint8_t rxbuf[32] __attribute__ ((section (".sram2")));
 #endif
@@ -305,7 +305,7 @@ void spi_error_cb(SPIDriver *spip)
         .cr2              = 0U
     } ;
 #else
-    const SPIConfig spi3cfg = {NULL, SSPORT, SSPAD, SPI_CR1_BR_0 };
+    const SPIConfig spi3cfg = {NULL, SSPORT, SSPAD, 0   |(0<<3) };
 #endif
 
 /// SPI first byte when writing MAX11300 (7-bit address in bits 0x7E; LSB=0 for write)

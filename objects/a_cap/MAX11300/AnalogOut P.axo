@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.12">
+<objdefs appVersion="1.1.0">
    <obj.normal id="AnalogOut P" uuid="73bfc09d-75bb-45bf-a683-3faae84ed386">
       <sDescription>12 bit CV Output, to be used with the MAX11300.
 
@@ -14,7 +14,7 @@ Offset and Scale can be used to act as an offset/attenuator of offset/amplifier 
       <license>GPL</license>
       <helpPatch>MAX11300.axh</helpPatch>
       <inlets>
-         <frac32.bipolar name="in"/>
+         <frac32.bipolar name="in" noLabel="true"/>
       </inlets>
       <outlets/>
       <displays/>
