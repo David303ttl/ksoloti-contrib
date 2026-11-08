@@ -206,9 +206,9 @@ public:
 };
 
 
-WORKING_AREA(waThreadX, 1024*2);
+THD_WORKING_AREA(waThreadX, 1024*2);
 msg_t ThreadX();
-Thread *pProcessThread;
+thread_t *pProcessThread;
 
 bool bConnected = false;
 bool bInititalised = false;
@@ -1038,7 +1038,7 @@ msg_t ThreadX()
   LogTextMessage("MAX11300 thread started");
 #endif
 	ClearDigital();
-  while ( !chThdShouldTerminate() ) 
+  while ( !chThdShouldTerminateX() )
   {
     eventmask_t evt = chEvtWaitOne((eventmask_t)ALL_EVENTS);
 		//LogTextMessage("event= %x", evt);
