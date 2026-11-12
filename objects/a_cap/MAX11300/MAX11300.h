@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../chibios/os/various/chprintf.c"
+#include "chprintf.h"
 
 // syncronization
 //
@@ -207,7 +207,7 @@ public:
 
 
 THD_WORKING_AREA(waThreadX, 1024*2);
-msg_t ThreadX();
+void ThreadX(void *);
 thread_t *pProcessThread;
 
 bool bConnected = false;
@@ -265,17 +265,10 @@ const char * const ChannelInfo::m_sSamples[] = { "1 Sample", "2 Samples", "4 Sam
 const char * const ChannelInfo::m_sLogicLevel[] = { "3.3V", "5V", "10V"};
 
 ChannelInfo channels[CHANNEL_COUNT];
-#if BOARD_KSOLOTI_CORE_H743 || BOARD_KSOLOTI_CORE_F427
-#define SSPORT	GPIOD
-#define SSPAD 	5
-uint8_t txbuf[32] SPILINK_DMA_SECTION;
-uint8_t rxbuf[32] SPILINK_DMA_SECTION;
-#else
 #define SSPORT	GPIOD
 #define SSPAD 	5
 uint8_t txbuf[32] __attribute__ ((section (".sram2")));
 uint8_t rxbuf[32] __attribute__ ((section (".sram2")));
-#endif
 
 void spi_error_cb(SPIDriver *spip) 
 {
@@ -292,8 +285,6 @@ void spi_error_cb(SPIDriver *spip)
 #endif
 }
 
-#if BOARD_KSOLOTI_CORE_H743 || BOARD_KSOLOTI_CORE_F427
-    // V21 chibios
     const SPIConfig spi3cfg = {
         .circular         = false,
         .slave            = false,
@@ -304,9 +295,6 @@ void spi_error_cb(SPIDriver *spip)
         .cr1              = SPI_CR1_BR_0,
         .cr2              = 0U
     } ;
-#else
-    const SPIConfig spi3cfg = {NULL, SSPORT, SSPAD, SPI_CR1_BR_0 };
-#endif
 
 /// SPI first byte when writing MAX11300 (7-bit address in bits 0x7E; LSB=0 for write)
 #define MAX11300Addr_SPI_Write(RegAddr) ( (uint8_t)(RegAddr << 1)     )
@@ -755,7 +743,7 @@ bool Initialise(void)
       LogTextMessage("MAX11300: initialised. CR=%x", uControlValue);
 
       // Start thread
-      pProcessThread = chThdCreateStatic(waThreadX, sizeof(waThreadX), LOWPRIO, (tfunc_t)ThreadX, nullptr);
+      pProcessThread = chThdCreateStatic(waThreadX, sizeof(waThreadX), LOWPRIO, ThreadX, nullptr);
     }
     else
       LogTextMessage("MAX11300: failed to initialise.");
@@ -1032,7 +1020,7 @@ void DebugDump(void)
 #endif	
 }
 
-msg_t ThreadX()
+void ThreadX(void *)
 {
 #if DEBUG	
   LogTextMessage("MAX11300 thread started");
